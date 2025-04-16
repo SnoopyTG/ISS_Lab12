@@ -43,7 +43,7 @@ async function loadNews(searchTerm = "", source = "all", reset = false) {
       : allArticles;
     
     document.getElementById("articleCount").textContent = `Total articles: ${filteredArticles.length}`;
-    // OPINION: Javascript syntax is stupid
+    
     list.innerHTML = "";
     filteredArticles.forEach(article => {
       const div = document.createElement("div");
@@ -64,5 +64,18 @@ async function loadNews(searchTerm = "", source = "all", reset = false) {
   }
 }
 
+// Add event listeners for search and source filter
+document.getElementById("search").addEventListener("input", (e) => {
+  const searchTerm = e.target.value;
+  const source = document.getElementById("source").value;
+  loadNews(searchTerm, source);
+});
 
+document.getElementById("source").addEventListener("change", (e) => {
+  const source = e.target.value;
+  const searchTerm = document.getElementById("search").value;
+  loadNews(searchTerm, source, true);
+});
+
+// Initial load
 loadNews();
