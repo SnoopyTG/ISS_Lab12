@@ -16,17 +16,21 @@
   </nav>
   <div class="container">
     <!-- Please suggest some good music, I am tired of my playlist -->
-    <p id="userCounts">Total users: 0</p>
-    <input type="text" id="search" placeholder="Search users..." />
     <h1>🧑 User Profiles</h1>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Search users..." />
+      <p id="userCount">Total users: 0</p>
+    </div>
     <form id="userForm">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="text" id="bio" placeholder="Bio" required />
-      <button type="submit">Add User</button>
+      <div class="form-group">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="text" id="bio" placeholder="Bio" required />
+        <button type="submit">Add User</button>
+      </div>
     </form>
-    <ul id="userList"></ul>
+    <ul id="userList" class="user-list"></ul>
   </div>
 
-  <script src="styles/profile.js"></script>
+  <script src="scripts/profile.js"></script>
 </body>
 </html>

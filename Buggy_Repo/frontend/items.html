@@ -14,7 +14,27 @@
     <a href="news.html">News</a>
     <a href="quiz.html">Quiz</a>
   </nav>
-  <!-- fuck I think I deleted a container, god help me-->
+
+  <div class="container">
+    <h1>Items Management</h1>
+    
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Search items...">
+      <p id="itemCount">Total items: 0</p>
+    </div>
+
+    <form id="itemForm">
+      <div class="form-group">
+        <input type="text" id="name" placeholder="Item name" required>
+        <input type="text" id="description" placeholder="Item description" required>
+        <button type="submit">Add Item</button>
+      </div>
+    </form>
+
+    <ul id="itemList" class="item-list">
+      <!-- Items will be dynamically added here -->
+    </ul>
+  </div>
 
   <script src="scripts/items.js"></script>
 </body>
