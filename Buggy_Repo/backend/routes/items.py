@@ -1,37 +1,53 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 from models import Item
 from bson import ObjectId
+from typing import List
 
-router = {}
+router = APIRouter()
 
 async def get_items_collection():
     from db import init_db
     return init_db()["items_collection"]
 
-@router.get("/")
+@router.get("/", response_model=List[dict], status_code=status.HTTP_200_OK)
 async def get_items():
-    collection = await get_items_collection()
-    items = []
-    async for item in collection.find():
-        item["_id"] = str(item["_id"])
-        items.append(item)
-    return items
+    try:
+        collection = await get_items_collection()
+        items = []
+        async for item in collection.find():
+            item["_id"] = str(item["_id"])
+            items.append(item)
+        return items
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to fetch items: {str(e)}"
+        )
 
-@router.post("/")
+@router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_item(item: Item):
-    collection = await get_items_collection()
-    result = await collection.insert_one(item.dict())
-    return {"id": str(result.inserted_id)}
+    try:
+        collection = await get_items_collection()
+        result = await collection.insert_one(item.dict())
+        return {"id": str(result.inserted_id)}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to create item: {str(e)}"
+        )
 
-@router.post("/")
-async def create_item(item: Item):
-    return {"id": "Item Inserted"}
-# I want a chocolate
-@router.delete("/{item_id}/{item_details}")
-async def delete_item(item_id: str, item_details:str):
-    collection = await get_items_collection()
-    result = await collection.delete_one({"_id": ObjectId(item_id)})
-    result2 = await collection.delete_one({"_id": ObjectId(item_details)})
-    if result.deleted_count:
-        return {"status": "deleted", "deleted_item":result2}
-    raise HTTPException(status_code=404, detail="Item not found")
+@router.delete("/{item_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_item(item_id: str):
+    try:
+        collection = await get_items_collection()
+        result = await collection.delete_one({"_id": ObjectId(item_id)})
+        if not result.deleted_count:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Item not found"
+            )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to delete item: {str(e)}"
+        )
