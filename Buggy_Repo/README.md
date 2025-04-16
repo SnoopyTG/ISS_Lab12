@@ -49,19 +49,19 @@
 | 15  |fixed in routes: quiz.py                                            |          Arjun|         Arjun|
 | 16  |Replaced Patch with delete in profile.js                            |         Shrish|        Shrish|
 | 17  |                                                                    |               |              |
-| 18  |                                          |               |              |
-| 19  |                                          |               |              |
-| 20  |                                          |               |              |
-| 21  |                                          |               |              |
-| 22  |                                          |               |              |
-| 23  |                                          |               |              |
-| 24  |                                          |               |              |
-| 25  |                                          |               |              |
-| 26  |                                          |               |              |
-| 27  |                                          |               |              |
-| 28  |                                          |               |              |
-| 29  |                                          |               |              |
-| 30  |                                          |               |              |
+| 18  |                                                                    |               |              |
+| 19  |                                                                    |               |              |
+| 20  |                                                                    |               |              |
+| 21  |                                                                    |               |              |
+| 22  |                                                                    |               |              |
+| 23  |                                                                    |               |              |
+| 24  |                                                                    |               |              |
+| 25  |                                                                    |               |              |
+| 26  |                                                                    |               |              |
+| 27  |                                                                    |               |              |
+| 28  |                                                                    |               |              |
+| 29  |                                                                    |               |              |
+| 30  |                                                                    |               |              |
 
 GitHub Repo Link - https://github.com/SnoopyTG/ISS_Lab12
 
