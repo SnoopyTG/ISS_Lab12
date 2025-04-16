@@ -30,25 +30,25 @@
 
 ### Table to keep track
 
-| ID  | Issue Description                        | Identified By | Fixed By     |
-|-----|------------------------------------------|---------------|--------------|
-| 1   | Style.css is not filled                                    |         Narain |     Whole Team     |
-| 2   |Link to quiz.html not included in other html files                                            |               |              |
-| 3   |In index.html using ISO-8859-1 charset instead of UTF-8                                            |               |              |
-| 4   |Added <nav> tags for the links in analytics.html                                          |               |              |
-| 5   |                                          |               |              |
-| 6   |                                          |               |              |
-| 7   |                                          |               |              |
-| 8   |                                          |               |              |
-| 9   |                                          |               |              |
-| 10  |                                          |               |              |
-| 11  |                                          |               |              |
-| 12  |                                          |               |              |
-| 13  |                                          |               |              |
-| 14  |                                          |               |              |
-| 15  |                                          |               |              |
-| 16  |                                          |               |              |
-| 17  |                                          |               |              |
+| ID  | Issue Description                                                  | Identified By | Fixed By     |
+|-----|--------------------------------------------------------------------|---------------|--------------|
+| 1   |Style.css is not filled                                             |         Shrish|        Shrish|
+| 2   |Link to quiz.html not included in other html files                  |          Arjun|         Arjun|
+| 3   |In index.html using ISO-8859-1 charset instead of UTF-8             |          Parth|         Parth|
+| 4   |Added <nav> tags for the links in analytics.html                    |          Amish|         Amish|
+| 5   |fixed items.js                                                      |          Amish|         Amish|
+| 6   |changed quiz.html by adding href for news.html and analytics.html   |          Parth|         Parth|
+| 7   |Added console.error in catch block                                  |          Arjun|         Arjun|
+| 8   |Added a baseurl profile.js                                          |         Shrish|        Shrish|
+| 9   |fixed in routes: items.py                                           |         Shrish|        Shrish|
+| 10  |fixed db.py                                                         |          Arjun|         Arjun|
+| 11  |fixed source filter in news.js                                      |          Amish|         Amish|
+| 12  |fixed main.py                                                       |          Parth|         Parth|
+| 13  |fixed in routes: analytics.py                                       |          Amish|         Amish|
+| 14  |fixed in routes: users.py                                           |          Parth|         Parth|
+| 15  |fixed in routes: quiz.py                                            |          Arjun|         Arjun|
+| 16  |Replaced Patch with delete in profile.js                            |         Shrish|        Shrish|
+| 17  |                                                                    |               |              |
 | 18  |                                          |               |              |
 | 19  |                                          |               |              |
 | 20  |                                          |               |              |
