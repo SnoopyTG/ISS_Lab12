@@ -35,16 +35,28 @@ function updateAttempts() {
   attemptCount.textContent = `Total attempts: ${filtered.length}`;
 }
 
+function showError(message) {
+  feedback.textContent = message;
+  feedback.className = 'error';
+  questionDiv.textContent = 'Failed to load question. Click Reset to try again.';
+  form.innerHTML = '';
+  resetBtn.classList.remove('hidden');
+}
+
 searchInput.addEventListener("input", updateAttempts);
 // how is life ?
 async function loadHighScore() {
   try {
     const res = await fetch(`${BASE_URL}/quiz/highscore`);
+    if (!res.ok) {
+      throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+    }
     const data = await res.json();
     highScore = data.high_score;
     updateScoreDisplay();
-  } catch {
-    feedback.textContent = "Failed to load high score.";
+  } catch (error) {
+    console.error('Failed to load high score:', error);
+    showError(`Failed to load high score: ${error.message}`);
   }
 }
 
@@ -53,6 +65,9 @@ async function loadQuestion() {
 
   try {
     const res = await fetch(`${BASE_URL}/quiz/question`);
+    if (!res.ok) {
+      throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+    }
     const data = await res.json();
     currentQuestion = data;
 
@@ -67,8 +82,10 @@ async function loadQuestion() {
 
     form.dataset.id = data.id;
     feedback.textContent = "";
-  } catch {
-    feedback.textContent = "Failed to load question.";
+    feedback.className = '';
+  } catch (error) {
+    console.error('Failed to load question:', error);
+    showError(`Failed to load question: ${error.message}`);
   }
 }
 
@@ -77,24 +94,27 @@ form.addEventListener("submit", async (e) => {
   if (gameOver) return;
 
   const selected = form.querySelector("input[name=answer]:checked");
-  if (!selected) return;
-
-  const answer = selected.value;
-  const id = parseInt(form.dataset.id);
+  if (!selected) {
+    feedback.textContent = "Please select an answer";
+    feedback.className = 'error';
+    return;
+  }
 
   try {
+    const answer = selected.value;
+    const id = parseInt(form.dataset.id);
+
     const res = await fetch(`${BASE_URL}/quiz/answer`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, answer, score })
     });
 
-    const data = await res.json();
-
-    if (data.error) {
-      feedback.textContent = data.error;
-      return;
+    if (!res.ok) {
+      throw new Error(`Server returned ${res.status}: ${res.statusText}`);
     }
+
+    const data = await res.json();
 
     attemptHistory.push({
       question: currentQuestion.text,
@@ -109,15 +129,18 @@ form.addEventListener("submit", async (e) => {
       highScore = data.high_score;
       updateScoreDisplay();
       feedback.textContent = "✅ Correct!";
+      feedback.className = 'success';
       await loadQuestion();
     } else {
       feedback.textContent = `❌ Incorrect. Correct answer: ${data.correct_answer}. Game Over.`;
+      feedback.className = 'error';
       gameOver = true;
       form.innerHTML = "";
       resetBtn.classList.remove("hidden");
     }
-  } catch {
-    feedback.textContent = "Error submitting answer.";
+  } catch (error) {
+    console.error('Failed to submit answer:', error);
+    showError(`Failed to submit answer: ${error.message}`);
   }
 });
 
@@ -128,6 +151,7 @@ resetBtn.addEventListener("click", () => {
   updateScoreDisplay();
   updateAttempts();
   resetBtn.classList.add("hidden");
+  feedback.className = '';
   loadQuestion();
 });
 
