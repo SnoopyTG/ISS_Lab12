@@ -35,8 +35,8 @@
 | 1   | Style.css is not filled                                    |         Narain |     Whole Team     |
 | 2   |Link to quiz.html not included in other html files                                            |               |              |
 | 3   |In index.html using ISO-8859-1 charset instead of UTF-8                                            |               |              |
-| 4   |                                          |               |              |
-| 5   |                                          |               |              |
+| 4   | Added refernce links for other pages in analytics.html                                    |               |              |
+| 5   |                                         |               |              |
 | 6   |                                          |               |              |
 | 7   |                                          |               |              |
 | 8   |                                          |               |              |
