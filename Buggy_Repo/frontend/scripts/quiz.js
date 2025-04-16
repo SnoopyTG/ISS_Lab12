@@ -5,7 +5,7 @@ let highScore = 0;
 let currentQuestion = null;
 let gameOver = false;
 let attemptHistory = [];
-
+//hi
 const scoreDisplay = document.getElementById("scoreDisplay");
 const questionDiv = document.getElementById("question");
 const form = document.getElementById("answerForm");
