@@ -64,3 +64,9 @@
 | 30  |                                          |               |              |
 
 GitHub Repo Link - https://github.com/SnoopyTG/ISS_Lab12
+
+Team:
+Parth Nitesh Chadhari - 2024101127
+Shrish Kadam - 2024114015
+Arjun Varma - 2024101125
+Amish Goyal - 2024101090
